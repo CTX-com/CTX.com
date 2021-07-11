@@ -32,6 +32,8 @@ $.ajax(settings).done(function(response) {
         myDate = new Date(value.lastTransactionReceivedOn).toLocaleString('en-GB', {
             timeZone: 'UTC'
         });
+        coinIcon = value.currency.toLowerCase();
+
         console.log(myDate);
         if (value.connected) {
             status = "Connected";
@@ -40,7 +42,7 @@ $.ajax(settings).done(function(response) {
         }
         $('#nodes-list').append($(`
                 <div class="border p-3 mt-3 d-flex text-center node-info flex-column justify-content-between flex-md-row align-items-center">
-                    <span class="title mt-1 mb-1 ms-md-2"><img src="../images/coins/${value.currency}.png" height="30" width="30" alt="DASH"/>${value.currency}</span>
+                    <span class="title mt-1 mb-1 ms-md-2"><img src="../images/coins/${coinIcon}.png" height="30" width="30" alt="DASH"/>${value.currency}</span>
                     <span class="mt-1 mb-1"><strong>Last Block:</strong><br /> ${value.localBlockCount}</span>
                     <span class="mt-1 mb-1"><strong>Last transaction received:</strong><br /> ${myDate} UTC</span>
                     <span class="me-md-2 node-status ${status}">${status}</span>
